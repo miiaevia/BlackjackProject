@@ -2,7 +2,6 @@ package come.skilldistillery.blackjack.tests;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.skilldistillery.blackjack.BlackJackGame;
-import com.skilldistillery.gameparticipants.common.Dealer;
 import com.skilldistillery.gameparticipants.common.Gambler;
 
 public class BlackJackGameTests {
@@ -30,6 +28,14 @@ public class BlackJackGameTests {
 		List<Gambler> unexpected = null;
 		List<Gambler> actual = bjg.getGamblers(); 
 		assertNotSame(unexpected, actual);
+	}
+	@Test
+	public void test_BlackJackGame_instantiates_new_dealer() {
+		fail("Not yet implemented");
+	}
+	@Test
+	public void test_startGame_instantiates_new_deck() {
+		fail("Not yet implemented");
 	}
 	
 }
