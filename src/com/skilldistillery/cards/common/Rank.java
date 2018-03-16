@@ -1,4 +1,4 @@
-package com.skilldistillery.cards;
+package com.skilldistillery.cards.common;
 
 public enum Rank {
 

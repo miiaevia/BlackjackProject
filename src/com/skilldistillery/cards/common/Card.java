@@ -1,4 +1,4 @@
-package com.skilldistillery.cards;
+package com.skilldistillery.cards.common;
 
 public class Card {
 	Suit suit; 

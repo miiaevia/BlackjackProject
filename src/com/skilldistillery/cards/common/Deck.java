@@ -1,8 +1,8 @@
-package com.skilldistillery.cards;
+package com.skilldistillery.cards.common;
 
 import java.util.*;
 
-import com.skilldistillery.cards.Card;
+import com.skilldistillery.cards.common.Card;
 
 public class Deck {
 	private List<Card> deck;
