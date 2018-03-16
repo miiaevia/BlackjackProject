@@ -58,8 +58,8 @@ public class BlackJackGame extends Game {
 			Card dealt = deck.dealCard(); 
 			Hand playerHand = player.getHand(); 
 			playerHand.addCard(dealt); 
+			System.out.println(dealt);
 		}
-		
 	}
 
 }
