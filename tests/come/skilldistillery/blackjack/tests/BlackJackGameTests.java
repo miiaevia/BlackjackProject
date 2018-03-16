@@ -37,5 +37,9 @@ public class BlackJackGameTests {
 	public void test_startGame_instantiates_new_deck() {
 		fail("Not yet implemented");
 	}
+	@Test 
+	public void test_startRound_deals_2_cards_to_each_player() {
+		fail("Not yet implemented"); 
+	}
 	
 }

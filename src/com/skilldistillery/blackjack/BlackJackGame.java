@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
 import com.skilldistillery.gameapp.common.Game;
 import com.skilldistillery.gameparticipants.common.Dealer;
 import com.skilldistillery.gameparticipants.common.Gambler;
+import com.skilldistillery.gameparticipants.common.Hand;
+import com.skilldistillery.gameparticipants.common.Player;
 
 public class BlackJackGame extends Game {
 	static Scanner kb = new Scanner(System.in); 
@@ -34,7 +37,7 @@ public class BlackJackGame extends Game {
 		return gamblers; 
 	}
 
-	public void startGame(Dealer dealer, List<Gambler> newPlayers) {
+	public void startGame(Dealer dealer, List<Gambler> newGamblers) {
 		//future: wrap in do-while loop to give option to deal more decks once
 		// deck is empty
 		// for now: loop to deal initial hands to all players (including dealer)
@@ -42,6 +45,21 @@ public class BlackJackGame extends Game {
 		// first to gamblers, then to dealer
 		// first dealer card should be face down
 		Deck deck = new Deck(); 
+		List<Player> players = new ArrayList<>();
+		for (int i = 0; i < newGamblers.size(); i++) {
+			players.add(newGamblers.get(i)); 
+		}
+		players.add(dealer); 
+		startRound(players, deck);
+	}
+	public void startRound(List<Player> players, Deck deck) {
+		for (int i = 0; i < 2; i++) {
+			Player player = players.get(i); 
+			Card dealt = deck.dealCard(); 
+			Hand playerHand = player.getHand(); 
+			playerHand.addCard(dealt); 
+		}
+		
 	}
 
 }

@@ -7,6 +7,11 @@ import com.skilldistillery.cards.common.Card;
 
 public class Hand {
 	
-	List<Card> playerHand = new ArrayList<>(); 
+	List<Card> playerHand = new ArrayList<>();
+
+	public void addCard(Card dealt) {
+		playerHand.add(dealt);
+		
+	} 
 
 }
