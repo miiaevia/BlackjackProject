@@ -43,23 +43,34 @@ public class BlackJackGame extends Game {
 		// for now: loop to deal initial hands to all players (including dealer)
 		// initial hand needs 2 rounds to deal 1 card at a time, 
 		// first to gamblers, then to dealer
-		// first dealer card should be face down
+		// second dealer card needs to be shown to players
 		Deck deck = new Deck(); 
-		List<Player> players = new ArrayList<>();
-		for (int i = 0; i < newGamblers.size(); i++) {
-			players.add(newGamblers.get(i)); 
-		}
-		players.add(dealer); 
-		startRound(players, deck);
+//		List<Player> players = new ArrayList<>();
+//		for (int i = 0; i < newGamblers.size(); i++) {
+//			players.add(newGamblers.get(i)); 
+//		}
+//		players.add(dealer); 
+		startRound(newGamblers, dealer, deck);
 	}
-	public void startRound(List<Player> players, Deck deck) {
-		for (int i = 0; i < 2; i++) {
-			Player player = players.get(i); 
+	public void startRound(List<Gambler> gamblers, Dealer dealer, Deck deck) {
+		for (int i = 0; i < gamblers.size(); i++) {
+			Player gambler = gamblers.get(i); 
 			Card dealt = deck.dealCard(); 
-			Hand playerHand = player.getHand(); 
+			Card dealt2 = deck.dealCard(); 
+			Hand playerHand = gambler.getHand(); 
 			playerHand.addCard(dealt); 
-			System.out.println(dealt);
+			playerHand.addCard(dealt2); 
+			// Sysout to test that 2 cards were dealt
+//			System.out.println(dealt);
 		}
+		Hand dealerHand = dealer.getHand(); 
+		Card dealerCard1 = deck.dealCard(); 
+		Card dealerCard2 = deck.dealCard(); 
+		dealerHand.addCard(dealerCard1);
+		dealerHand.addCard(dealerCard2);
+		
+		String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown\n\t2. " + dealerCard2.toString(); 
+		System.out.println(dealerCardsInitial); 
 	}
 
 }

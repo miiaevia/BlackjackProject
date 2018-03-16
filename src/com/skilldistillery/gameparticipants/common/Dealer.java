@@ -7,5 +7,6 @@ public class Dealer implements Player {
 	public Hand getHand() {
 		return dealerHand;
 	}
+	
 
 }

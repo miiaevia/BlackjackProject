@@ -13,5 +13,8 @@ public class Hand {
 		playerHand.add(dealt);
 		
 	} 
+	public void showSecondCard() {
+		
+	}
 
 }
