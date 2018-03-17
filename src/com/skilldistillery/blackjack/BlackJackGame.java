@@ -10,7 +10,6 @@ import com.skilldistillery.gameapp.common.Game;
 import com.skilldistillery.gameparticipants.common.Dealer;
 import com.skilldistillery.gameparticipants.common.Gambler;
 import com.skilldistillery.gameparticipants.common.Hand;
-import com.skilldistillery.gameparticipants.common.Player;
 
 public class BlackJackGame extends Game {
 	static Scanner kb = new Scanner(System.in); 
@@ -21,11 +20,12 @@ public class BlackJackGame extends Game {
 		BlackJackGame bjg = new BlackJackGame();
 		// create a new dealer
 		Dealer dealer = new Dealer();
+		dealer.setName("Megan");
 		// get a list of gamblers
 		// hardcoded but can be expanded for user to enter a list
-		List<Gambler> newPlayers = bjg.getGamblers(); 
+		List<Gambler> newGamblers = bjg.getGamblers(); 
 		// start game passes dealers and players to game method
-		bjg.startGame(dealer, newPlayers);
+		bjg.startGame(dealer, newGamblers);
 	}
 
 	public List<Gambler> getGamblers() {
@@ -33,6 +33,7 @@ public class BlackJackGame extends Game {
 //		System.out.print("How many players are there? ");
 //		int numPlayers = kb.nextInt(); 
 		Gambler Ron = new Gambler();
+		Ron.setName("Ron");
 		gamblers.add(Ron); 
 		return gamblers; 
 	}
@@ -44,6 +45,7 @@ public class BlackJackGame extends Game {
 		// initial hand needs 2 rounds to deal 1 card at a time, 
 		// first to gamblers, then to dealer
 		// second dealer card needs to be shown to players
+		//FUTURE: add "deal card" method and refactor
 		Deck deck = new Deck(); 
 //		List<Player> players = new ArrayList<>();
 //		for (int i = 0; i < newGamblers.size(); i++) {
@@ -54,12 +56,14 @@ public class BlackJackGame extends Game {
 	}
 	public void startRound(List<Gambler> gamblers, Dealer dealer, Deck deck) {
 		for (int i = 0; i < gamblers.size(); i++) {
-			Player gambler = gamblers.get(i); 
+			Gambler gambler = gamblers.get(i);  
 			Card dealt = deck.dealCard(); 
 			Card dealt2 = deck.dealCard(); 
 			Hand playerHand = gambler.getHand(); 
 			playerHand.addCard(dealt); 
 			playerHand.addCard(dealt2); 
+			String playerCards = "" + gambler.getName() + ", your cards are: \n\t1. " + dealt + "\n\t2. " + dealt2;
+			System.out.println(playerCards);
 			// Sysout to test that 2 cards were dealt
 //			System.out.println(dealt);
 		}
@@ -71,6 +75,32 @@ public class BlackJackGame extends Game {
 		
 		String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown\n\t2. " + dealerCard2.toString(); 
 		System.out.println(dealerCardsInitial); 
+		
+		// iterate over players so each can choose to hit or stand
+		for (int i = 0; i < gamblers.size(); i++) {
+			Gambler gambler = gamblers.get(i); 
+			// somehow I need to make loop that lets players hit as much as they want, up to 22+
+			// and then move onto either the dealer or the next player
+			boolean hit = true;
+				//do-while loop to draw card, show new player deck and same dealer cards, and ask user to hit/stand again
+			do {
+				System.out.println("Would you like to hit or stand(1 or 2)? ");
+				System.out.println("1. Hit");
+				System.out.println("2. Stand");
+				int nextMove = kb.nextInt(); 
+				if (nextMove == 1) {
+					Card dealt = deck.dealCard(); 
+					Hand playerHand = gambler.getHand();
+					playerHand.addCard(dealt);
+					System.out.println("" + gambler.getName() + ", your cards are now: ");
+					playerHand.showHand(); 
+					hit = false; 
+				}
+			}
+			while (hit = true); {
+				break;
+			}
+		}
 	}
 
 }

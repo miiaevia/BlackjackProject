@@ -16,5 +16,12 @@ public class Hand {
 	public void showSecondCard() {
 		
 	}
+	public void showHand () {
+		for (int i = 0; i < playerHand.size(); i++) {
+			Card card = playerHand.get(i); 
+			System.out.println(card.toString());
+			
+		}
+	}
 
 }
