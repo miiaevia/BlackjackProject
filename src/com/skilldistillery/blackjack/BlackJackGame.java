@@ -19,8 +19,7 @@ public class BlackJackGame extends Game {
 		// start new blackjack game
 		BlackJackGame bjg = new BlackJackGame();
 		// create a new dealer
-		Dealer dealer = new Dealer();
-		dealer.setName("Megan");
+		Dealer dealer = new Dealer("Megan");
 		// get a list of gamblers
 		// hardcoded but can be expanded for user to enter a list
 		List<Gambler> newGamblers = bjg.getGamblers();
