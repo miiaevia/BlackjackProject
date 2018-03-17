@@ -12,10 +12,8 @@ public class Hand {
 	public void addCard(Card dealt) {
 		playerHand.add(dealt);
 		
-	} 
-	public void showSecondCard() {
-		
 	}
+	
 	public void showHand () {
 		for (int i = 0; i < playerHand.size(); i++) {
 			Card card = playerHand.get(i); 
@@ -23,8 +21,10 @@ public class Hand {
 			
 		}
 	}
-	public void getHandValue() {
+	
+	public int getHandValue() {
 		
+		return 0;
 	}
 
 }

@@ -5,36 +5,50 @@ import java.util.*;
 import com.skilldistillery.cards.common.Card;
 
 public class Deck {
-	private List<Card> deck;
-
+	private List<Card> deck =  new ArrayList<>();
+	
+	//
+	//  Public
+	//
+	
+	/**
+	 * This is the constructor.
+	 */
 	public Deck() {
-		deck= createDeck();
+		createDeck();
+	}
+
+	/**
+	 * This return the number of cards remaining in the deck.
+	 * 
+	 * @return Size of the deck
+	 */ 
+	public int deckSize() {
+		return deck.size();
+	}
+
+	// this shuffles the deck
+	public void shuffleDeck() {
+		Collections.shuffle(deck);
+	}
+
+	// this removes a card from the deck and returns it
+	public Card dealCard() {
+		Card card = deck.remove(0);
+		return card;
+
 	}
 	
-
-
-	private List<Card> createDeck() {
-	    deck = new ArrayList<>();
+	//
+	// Private
+	//
+	
+	private void createDeck() {
 		for (Suit mySuit : Suit.values()) {
 			for (Rank myRank : Rank.values()) {
 				deck.add(new Card(myRank, mySuit));
 			}
 		}
-		return deck;
-	}
-	// this should return the number of cards remaining in the deck
-	public int checkDeckSize() {
-		return  deck.size();
-	}
-	// this shuffles the deck
-	void shuffleDeck() {
-		Collections.shuffle(deck);
-	}
-	// this removes a card from the deck and returns it
-	public Card dealCard() {
-		Card card = deck.remove(0); 
-		return card; 
-		
 	}
 
 }
