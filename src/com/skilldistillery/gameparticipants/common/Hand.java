@@ -23,8 +23,11 @@ public class Hand {
 	}
 	
 	public int getHandValue() {
-		
-		return 0;
+		int result = 0; 
+		for (Card card : playerHand) {
+			result+= card.getvalue(); 
+		}
+		return result;
 	}
 
 }

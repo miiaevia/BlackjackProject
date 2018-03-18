@@ -44,16 +44,17 @@ public class BlackJackGame extends Game {
 		// first to gamblers, then to dealer
 		// second dealer card needs to be shown to players
 		// FUTURE: add "deal card" method and refactor
-		Deck deck = new Deck();
 		// List<Player> players = new ArrayList<>();
 		// for (int i = 0; i < newGamblers.size(); i++) {
 		// players.add(newGamblers.get(i));
 		// }
 		// players.add(dealer);
-		startRound(newGamblers, dealer, deck);
+		startRound(newGamblers, dealer);
 	}
 
-	public void startRound(List<Gambler> gamblers, Dealer dealer, Deck deck) {
+	public void startRound(List<Gambler> gamblers, Dealer dealer) {
+		Deck deck = new Deck();
+		deck.shuffleDeck();
 		for (int i = 0; i < gamblers.size(); i++) {
 			Gambler gambler = gamblers.get(i);
 			Card dealt = deck.dealCard();
@@ -128,6 +129,7 @@ public class BlackJackGame extends Game {
 				System.out.println(dealer + " drew a " + dealerCard.toString());
 			}
 			if (dealerHand.getHandValue() > 21) {
+				System.out.println("Dealer busts! Everybody wins!");
 				//everybody wins!!!
 			}
 			else {
