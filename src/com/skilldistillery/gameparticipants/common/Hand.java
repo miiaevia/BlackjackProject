@@ -46,4 +46,9 @@ public class Hand {
 		}
 		return result;
 	}
+
+	public void removeCards() {
+		playerHand.clear();
+		
+	}
 }
