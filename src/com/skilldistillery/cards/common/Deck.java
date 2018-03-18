@@ -44,10 +44,14 @@ public class Deck {
 	//
 	
 	private void createDeck() {
-		for (Suit mySuit : Suit.values()) {
-			for (Rank myRank : Rank.values()) {
-				deck.add(new Card(myRank, mySuit));
-			}
+		for (Suit suit : Suit.values()) {
+			addRanks(suit);
+		}
+	}
+	
+	private void addRanks(Suit suit) {
+		for (Rank rank : Rank.values()) {
+			deck.add(new Card(rank, suit));
 		}
 	}
 

@@ -11,7 +11,6 @@ public class Hand {
 
 	public void addCard(Card dealt) {
 		playerHand.add(dealt);
-		
 	}
 	
 	public void showHand () {
@@ -27,7 +26,24 @@ public class Hand {
 		for (Card card : playerHand) {
 			result+= card.getvalue(); 
 		}
+		if (result > 21) {
+			for (int i = 0; i < getNumAces(); i++) {
+				result = result - 10; 
+				if (result <= 21) {
+					break;					
+				}
+			}
+		}
 		return result;
 	}
-
+	
+	private int getNumAces() {
+		int result = 0; 
+		for ( Card card : playerHand ) {
+			if (card.isAce()) {
+				result ++; 
+			}
+		}
+		return result;
+	}
 }

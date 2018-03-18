@@ -1,13 +1,15 @@
 package com.skilldistillery.cards.common;
 
 public class Card {
-	Suit suit; 
+	Suit suit;
 	Rank rank;
+
 	public Card(Rank rank, Suit suit) {
 		super();
 		this.rank = rank;
 		this.suit = suit;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -16,6 +18,7 @@ public class Card {
 		result = prime * result + ((suit == null) ? 0 : suit.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -31,12 +34,18 @@ public class Card {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return rank + " of " + suit;
-	} 
+	}
+
 	public int getvalue() {
-		return rank.getValue(); 
+		return rank.getValue();
 	}
 	
+	public boolean isAce() {
+		boolean result = rank == Rank.ACE;
+		return result;
+	}
 }
