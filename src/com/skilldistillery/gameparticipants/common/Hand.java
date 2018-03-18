@@ -16,7 +16,7 @@ public class Hand {
 	public void showHand () {
 		for (int i = 0; i < playerHand.size(); i++) {
 			Card card = playerHand.get(i); 
-			System.out.println(card.toString());
+			System.out.println("\t" + card.toString());
 			
 		}
 	}

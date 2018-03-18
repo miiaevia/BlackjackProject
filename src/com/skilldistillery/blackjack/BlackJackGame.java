@@ -19,7 +19,7 @@ public class BlackJackGame extends Game {
 		// start new blackjack game
 		BlackJackGame bjg = new BlackJackGame();
 		// create a new dealer
-		Dealer dealer = new Dealer("Megan");
+		Dealer dealer = new Dealer("Dealer Megan");
 		// get a list of gamblers
 		// hardcoded but can be expanded for user to enter a list
 		List<Gambler> newGamblers = bjg.getGamblers();
@@ -33,6 +33,9 @@ public class BlackJackGame extends Game {
 		// int numPlayers = kb.nextInt();
 		Gambler ron = new Gambler("Ron");
 		gamblers.add(ron);
+		gamblers.add(new Gambler("Michael"));
+		gamblers.add(new Gambler("Scott"));
+		gamblers.add(new Gambler("Lacey"));
 		return gamblers;
 	}
 
@@ -74,9 +77,9 @@ public class BlackJackGame extends Game {
 			Hand playerHand = gambler.getHand();
 			playerHand.addCard(dealt);
 			playerHand.addCard(dealt2);
-			System.out.println(gambler + ", your cards are: \n" + "\t1. " + dealt + "\n" + "\t2. " + dealt2);
+			System.out.println(gambler + ", your cards are: \n" + "\t" + dealt + "\n" + "\t" + dealt2);
 			// this line is to debug by looking at player hand value
-			System.out.println("Player hand value is " + playerHand.getHandValue());
+			System.out.println(gambler + ", your hand value is " + playerHand.getHandValue() + "\n");
 			if (playerHand.getHandValue() != 21) {
 				noBlackJackGamblers.add(gambler);
 			}
@@ -92,10 +95,10 @@ public class BlackJackGame extends Game {
 		dealerHand.addCard(dealerCard1);
 		dealerHand.addCard(dealerCard2);
 
-		String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown\n\t2. " + dealerCard2.toString();
+		String dealerCardsInitial = dealer + "'s cards are: \n\tFACEDOWN\n\t" + dealerCard2.toString() + "\n";
 		if (dealerHand.getHandValue() == 21) {
 			System.out.println(dealer + " got a BlackJack.");
-			System.out.println("Dealer's cards are: \n\t1 " + dealerCard1 + "\n\t2. " + dealerCard2.toString());
+			System.out.println( dealer + "'s cards are: \n\t" + dealerCard1 + "\n\t" + dealerCard2.toString() + "\n");
 			for (Gambler gambler : blackJackGamblers) {
 				System.out.println(gambler + ", you and " + dealer + " both got a BlackJack, you push.");
 			}
@@ -106,7 +109,7 @@ public class BlackJackGame extends Game {
 		}
 		else {
 			for (Gambler gambler : blackJackGamblers) {
-				System.out.println(gambler + ", you got a BlackJack. You win!!!");
+				System.out.println(gambler + ", you got a BlackJack. You win!!!\n");
 			}
 		}
 
@@ -125,6 +128,7 @@ public class BlackJackGame extends Game {
 		// iterate over players so each can choose to hit or stand
 		List<Gambler> gamblersStanding = new ArrayList<>();
 		for (Gambler gambler : noBlackJackGamblers) {
+			System.out.println("******************************************************\n");
 			// somehow I need to make loop that lets players hit as much as they want, up to
 			// 22+
 			// and then move onto either the dealer or the next player
@@ -133,21 +137,27 @@ public class BlackJackGame extends Game {
 			while (true) {
 				// break if already 21
 				if (gambler.getHand().getHandValue() == 21) {
+					System.out.println(gambler + ", your card value is 21. You stand.\n");
 					gamblersStanding.add(gambler); 
 					break;
 				}
-				System.out.println("Would you like to hit or stand(1 or 2)? ");
+				System.out.println(gambler + ", your cards are now: ");
+				gambler.getHand().showHand();
+				System.out.println(gambler + "'s card value is " + gambler.getHand().getHandValue() + "\n");
+				System.out.println(dealerCardsInitial);
+				System.out.println(gambler + ", would you like to hit or stand(1 or 2)? ");
 				System.out.println("1. Hit");
 				System.out.println("2. Stand");
 				int nextMove = kb.nextInt();
 				if (nextMove == 1) {
 					Card dealt = deck.dealCard();
+					System.out.println(gambler + " was dealt a " + dealt + "\n");
 					gambler.getHand().addCard(dealt);
-					System.out.println("" + gambler + ", your cards are now: ");
-					gambler.getHand().showHand();
-					System.out.println("Player's card value is " + gambler.getHand().getHandValue());
 					if (gambler.getHand().getHandValue() > 21) {
-						System.out.println(gambler + ", you bust");
+						System.out.println(gambler + ", you bust! Your final hand was: ");
+						gambler.getHand().showHand();
+						System.out.println(gambler + "'s card value is " + gambler.getHand().getHandValue() + "\n");
+						
 						// break if bust
 						break;
 					}
@@ -168,15 +178,15 @@ public class BlackJackGame extends Game {
 
 		System.out.println(
 				dealer + "'s hand is: " + "\n\t1." + dealerCard1.toString() + "\n\t2." + dealerCard2.toString());
-		System.out.println("Dealer's hand value is " + dealer.getHand().getHandValue());
+		System.out.println(dealer + "'s hand value is " + dealer.getHand().getHandValue());
 		while (dealerHand.getHandValue() < 17) {
 			Card dealerCard = deck.dealCard();
 			dealerHand.addCard(dealerCard);
 			System.out.println(dealer + " drew a " + dealerCard.toString());
-			System.out.println("Dealer's hand value is " + dealer.getHand().getHandValue());
+			System.out.println(dealer + "'s hand value is " + dealer.getHand().getHandValue() + "\n");
 		}
 		if (dealerHand.getHandValue() > 21) {
-			System.out.println("Dealer busts! Everybody wins!");
+			System.out.println(dealer + " busts! Everybody left wins!\n");
 			// everybody wins!!!
 		}
 		else {
@@ -185,10 +195,12 @@ public class BlackJackGame extends Game {
 					System.out.println(gamblerLeft + ", you push");
 				}
 				else if (dealerHand.getHandValue() > gamblerLeft.getHand().getHandValue()) {
-					System.out.println(dealer + " wins against " + gamblerLeft);
+					System.out.println(dealer + " wins against " + gamblerLeft );
 				}
 				else if (dealerHand.getHandValue() < gamblerLeft.getHand().getHandValue()) {
-					System.out.println(gamblerLeft + ", you win!!!");
+					if(gamblersStanding.contains(gamblerLeft)) {
+						System.out.println(gamblerLeft + ", you win!!!");
+					}
 				}
 			}
 
