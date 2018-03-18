@@ -73,12 +73,13 @@ public class BlackJackGame extends Game {
 		dealerHand.addCard(dealerCard1);
 		dealerHand.addCard(dealerCard2);
 
-		// String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown\n\t2. " +
-		// dealerCard2.toString();
+		String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown\n\t2. " +
+		 dealerCard2.toString();
 		// show both cards to debug
-		String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown (" + dealerCard1.toString() + ")\n\t2. "
-				+ dealerCard2.toString();
-		System.out.println(dealerCardsInitial);
+		// String dealerCardsInitial = "Dealer's cards are: \n\t1. Facedown (" +
+		// dealerCard1.toString() + ")\n\t2. "
+		// + dealerCard2.toString();
+				System.out.println(dealerCardsInitial);
 
 		List<Gambler> under21Gamblers = new ArrayList<>();
 		// iterate over players so each can choose to hit or stand
@@ -109,7 +110,7 @@ public class BlackJackGame extends Game {
 						// break if bust
 						break;
 					}
-					
+
 				}
 				else if (nextMove == 2) {
 					under21Gamblers.add(gambler);
@@ -121,8 +122,8 @@ public class BlackJackGame extends Game {
 		// All players with 21 or bust, stop
 		// Any players under 21, dealer continues
 		if (under21Gamblers.size() > 0) {
-			System.out.println(dealer + "'s hand is: " + "\n\t1." + dealerCard1.toString() + "\n\t2."
-					+ dealerCard2.toString());
+			System.out.println(
+					dealer + "'s hand is: " + "\n\t1." + dealerCard1.toString() + "\n\t2." + dealerCard2.toString());
 			while (dealerHand.getHandValue() < 17) {
 				Card dealerCard = deck.dealCard();
 				dealerHand.addCard(dealerCard);
@@ -130,11 +131,11 @@ public class BlackJackGame extends Game {
 			}
 			if (dealerHand.getHandValue() > 21) {
 				System.out.println("Dealer busts! Everybody wins!");
-				//everybody wins!!!
+				// everybody wins!!!
 			}
 			else {
-				for(Gambler gamblerLeft : under21Gamblers) {
-					if(dealerHand.getHandValue() == gamblerLeft.getHand().getHandValue() ) {
+				for (Gambler gamblerLeft : under21Gamblers) {
+					if (dealerHand.getHandValue() == gamblerLeft.getHand().getHandValue()) {
 						System.out.println(gamblerLeft + ", you push");
 					}
 					else if (dealerHand.getHandValue() > gamblerLeft.getHand().getHandValue()) {
