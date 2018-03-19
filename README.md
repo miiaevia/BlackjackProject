@@ -30,3 +30,4 @@ Technologies used:
 * Learned how to shuffle a Collections class
 * Learned about enumeration and how I can use a for-each loop to assign multiple enumerated value types
 * All collections have a clear() method. 
+* Figured out how to implement new math part-way through for soft ace values 1 and 11
